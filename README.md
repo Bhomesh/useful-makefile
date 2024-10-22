@@ -35,7 +35,9 @@
 | 🌐 Networking | Curl |
 | 🟩 JavaScript | Node.js, NVM, NPM, Yarn |
 | ✏️ Text Editor | Vim |
-| ☁️ Cloud & Orchestration | eksctl, AWS CLI, kubectl |
+| ☁️ Cloud & Orchestration | eksctl, AWS CLI, kubectl, Google Cloud SDK, Azure CLI |
+| 🚢 Kubernetes Development | Minikube, Kind |
+| 🏗️ Infrastructure as Code | Terraform, Ansible |
 
 ## 📋 Usage Guide
 
@@ -43,8 +45,8 @@
 |---------|-------------|
 | `make help` | Display available commands |
 | `make install_all` | Install all tools |
-| `make <tool_name>` | Install a specific tool (e.g., `make docker`) |
-| `make <TOOL_NAME>` | Check if a tool is installed (e.g., `make DOCKER`) |
+| `make <tool_name>` | Install a specific tool (e.g., `make docker`, `make terraform`) |
+| `make <TOOL_NAME>` | Check if a tool is installed (e.g., `make DOCKER`, `make TERRAFORM`) |
 
 ## ⚠️ Prerequisites
 
@@ -72,6 +74,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by [Bhomesh](https://github.com/bhomesh)
 
 </div>
