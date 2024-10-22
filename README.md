@@ -32,7 +32,6 @@
 | 🐚 Shell | Zsh |
 | 🐍 Python | Pip |
 | 🌐 Networking | Curl |
-| 🟩 JavaScript | Node.js, NVM, NPM, Yarn |
 | ✏️ Text Editor | Vim |
 | ☁️ Cloud & Orchestration | eksctl, AWS CLI, kubectl, Google Cloud SDK, Azure CLI |
 | 🚢 Kubernetes Development | Minikube, Kind |

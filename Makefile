@@ -13,9 +13,6 @@ HAS_DOCKERCLI := $(shell command -v docker;)
 HAS_ZSH := $(shell command -v zsh;)
 HAS_PIP := $(shell command -v pip;)
 HAS_CURL := $(shell command -v curl;)
-HAS_NODE := $(shell command -v node;)
-HAS_NPM := $(shell command -v npm;)
-HAS_YARN := $(shell command -v yarn;)
 HAS_VIM := $(shell command -v vim;)
 HAS_EKSCTL := $(shell command -v eksctl;)
 HAS_AWSCLI := $(shell command -v aws;)
@@ -29,7 +26,7 @@ HAS_ANSIBLE := $(shell command -v ansible;)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help prepare dockercli zsh PIP CURL NODE NPM YARN VIM EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl node nvm npm yarn vim eksctl awscli kubectl gcloud azure minikube kind terraform ansible
+.PHONY: help prepare dockercli zsh PIP CURL VIM EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim eksctl awscli kubectl gcloud azure minikube kind terraform ansible
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
@@ -37,10 +34,6 @@ help:
 	@echo "  ZSH                 Check if zsh is installed"
 	@echo "  PIP                 Check if pip is installed"
 	@echo "  CURL                Check if curl is installed"
-	@echo "  NODE                Check if node is installed"
-	@echo "  NVM                 Check if nvm is installed"
-	@echo "  NPM                 Check if npm is installed"
-	@echo "  YARN                Check if yarn is installed"
 	@echo "  VIM                 Check if vim is installed"
 	@echo "  EKSCTL              Check if eksctl is installed"
 	@echo "  AWSCLI              Check if awscli is installed"
@@ -80,29 +73,6 @@ install_all:
 	@if ! command -v curl &> /dev/null; then \
 		echo "$(YELLOW)Installing Curl...$(RESET)"; \
 		sudo apt-get install -y curl; \
-	fi
-	
-	@if ! command -v node &> /dev/null; then \
-		echo "$(YELLOW)Installing Node.js...$(RESET)"; \
-		curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
-		sudo apt-get install -y nodejs; \
-	fi
-	
-	@if ! command -v nvm &> /dev/null; then \
-		echo "$(YELLOW)Installing NVM...$(RESET)"; \
-		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash; \
-	fi
-	
-	@if ! command -v npm &> /dev/null; then \
-		echo "$(YELLOW)Installing NPM...$(RESET)"; \
-		sudo apt-get install -y npm; \
-	fi
-	
-	@if ! command -v yarn &> /dev/null; then \
-		echo "$(YELLOW)Installing Yarn...$(RESET)"; \
-		curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-		echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-		sudo apt-get update && sudo apt-get install -y yarn; \
 	fi
 	
 	@if ! command -v vim &> /dev/null; then \
@@ -216,45 +186,6 @@ curl:
 		echo "$(GREEN)Curl installed successfully.$(RESET)"; \
 	else \
 		echo "$(GREEN)Curl is already installed.$(RESET)"; \
-	fi
-
-node:
-	@if ! command -v node &> /dev/null; then \
-		echo "$(YELLOW)Installing Node.js...$(RESET)"; \
-		curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - && \
-		sudo apt-get install -y nodejs; \
-		echo "$(GREEN)Node.js installed successfully.$(RESET)"; \
-	else \
-		echo "$(GREEN)Node.js is already installed.$(RESET)"; \
-	fi
-
-nvm:
-	@if ! command -v nvm &> /dev/null; then \
-		echo "$(YELLOW)Installing NVM...$(RESET)"; \
-		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash; \
-		echo "$(GREEN)NVM installed successfully. Please restart your terminal or run 'source ~/.bashrc' to use NVM.$(RESET)"; \
-	else \
-		echo "$(GREEN)NVM is already installed.$(RESET)"; \
-	fi
-
-npm:
-	@if ! command -v npm &> /dev/null; then \
-		echo "$(YELLOW)Installing NPM...$(RESET)"; \
-		sudo apt-get install -y npm; \
-		echo "$(GREEN)NPM installed successfully.$(RESET)"; \
-	else \
-		echo "$(GREEN)NPM is already installed.$(RESET)"; \
-	fi
-
-yarn:
-	@if ! command -v yarn &> /dev/null; then \
-		echo "$(YELLOW)Installing Yarn...$(RESET)"; \
-		curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-		echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-		sudo apt-get update && sudo apt-get install -y yarn; \
-		echo "$(GREEN)Yarn installed successfully.$(RESET)"; \
-	else \
-		echo "$(GREEN)Yarn is already installed.$(RESET)"; \
 	fi
 
 vim:
