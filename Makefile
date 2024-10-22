@@ -251,7 +251,7 @@ gcloud:
 		echo "$(YELLOW)Installing Google Cloud SDK...$(RESET)"; \
 		echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
 		curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - && \
-		sudo apt-get update && sudo apt-get install google-cloud-sdk; \
+		sudo apt-get update && sudo apt-get install -y google-cloud-sdk; \
 		echo "$(GREEN)Google Cloud SDK installed successfully.$(RESET)"; \
 	else \
 		echo "$(GREEN)Google Cloud SDK is already installed.$(RESET)"; \
@@ -291,9 +291,13 @@ terraform:
 	@if ! command -v terraform &> /dev/null; then \
 		echo "$(YELLOW)Installing Terraform...$(RESET)"; \
 		sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl && \
-		curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add - && \
-		sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
-		sudo apt-get update && sudo apt-get install terraform; \
+		wget -O- https://apt.releases.hashicorp.com/gpg | \
+		gpg --dearmor | \
+		sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null && \
+		echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+		sudo tee /etc/apt/sources.list.d/hashicorp.list && \
+		sudo apt update && \
+		sudo apt-get install terraform; \
 		echo "$(GREEN)Terraform installed successfully.$(RESET)"; \
 	else \
 		echo "$(GREEN)Terraform is already installed.$(RESET)"; \
