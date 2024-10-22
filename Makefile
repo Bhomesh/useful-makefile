@@ -287,6 +287,20 @@ kind:
 		echo "$(GREEN)Kind is already installed.$(RESET)"; \
 	fi
 
+
+ansible:
+	@if ! command -v ansible &> /dev/null; then \
+		echo "$(YELLOW)Installing Ansible...$(RESET)"; \
+		sudo apt update && \
+		sudo apt install software-properties-common && \
+		sudo add-apt-repository --yes --update ppa:ansible/ansible && \
+		sudo apt install ansible; \
+		echo "$(GREEN)Ansible installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Ansible is already installed.$(RESET)"; \
+	fi
+
+
 terraform:
 	@if ! command -v terraform &> /dev/null; then \
 		echo "$(YELLOW)Installing Terraform...$(RESET)"; \
@@ -302,16 +316,3 @@ terraform:
 	else \
 		echo "$(GREEN)Terraform is already installed.$(RESET)"; \
 	fi
-
-ansible:
-	@if ! command -v ansible &> /dev/null; then \
-		echo "$(YELLOW)Installing Ansible...$(RESET)"; \
-		sudo apt update && \
-		sudo apt install software-properties-common && \
-		sudo add-apt-repository --yes --update ppa:ansible/ansible && \
-		sudo apt install ansible; \
-		echo "$(GREEN)Ansible installed successfully.$(RESET)"; \
-	else \
-		echo "$(GREEN)Ansible is already installed.$(RESET)"; \
-	fi
-
