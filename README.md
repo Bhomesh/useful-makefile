@@ -30,7 +30,6 @@
 |----------|-------|
 | 🐳 Containerization | Docker |
 | 🐚 Shell | Zsh |
-| 📦 Version Control | Git |
 | 🐍 Python | Pip |
 | 🌐 Networking | Curl |
 | 🟩 JavaScript | Node.js, NVM, NPM, Yarn |

@@ -11,7 +11,6 @@ RESET  := $(shell tput -Txterm sgr0)
 # Check for installed tools
 HAS_DOCKERCLI := $(shell command -v docker;)
 HAS_ZSH := $(shell command -v zsh;)
-HAS_GIT := $(shell command -v git;)
 HAS_PIP := $(shell command -v pip;)
 HAS_CURL := $(shell command -v curl;)
 HAS_NODE := $(shell command -v node;)
@@ -30,13 +29,12 @@ HAS_ANSIBLE := $(shell command -v ansible;)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help prepare dockercli zsh GIT PIP CURL NODE NPM YARN VIM EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh git pip curl node nvm npm yarn vim eksctl awscli kubectl gcloud azure minikube kind terraform ansible
+.PHONY: help prepare dockercli zsh PIP CURL NODE NPM YARN VIM EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl node nvm npm yarn vim eksctl awscli kubectl gcloud azure minikube kind terraform ansible
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
 	@echo "  DOCKERCLI           Check if docker is installed"
 	@echo "  ZSH                 Check if zsh is installed"
-	@echo "  GIT                 Check if git is installed"
 	@echo "  PIP                 Check if pip is installed"
 	@echo "  CURL                Check if curl is installed"
 	@echo "  NODE                Check if node is installed"
@@ -74,11 +72,6 @@ install_all:
 		sudo apt-get install -y zsh; \
 	fi
 	
-	@if ! command -v git &> /dev/null; then \
-		echo "$(YELLOW)Installing Git...$(RESET)"; \
-		sudo apt-get install -y git; \
-	fi
-	
 	@if ! command -v pip &> /dev/null; then \
 		echo "$(YELLOW)Installing Pip...$(RESET)"; \
 		sudo apt-get install -y python3-pip; \
@@ -91,13 +84,13 @@ install_all:
 	
 	@if ! command -v node &> /dev/null; then \
 		echo "$(YELLOW)Installing Node.js...$(RESET)"; \
-		curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - && \
+		curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
 		sudo apt-get install -y nodejs; \
 	fi
 	
 	@if ! command -v nvm &> /dev/null; then \
 		echo "$(YELLOW)Installing NVM...$(RESET)"; \
-		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash; \
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash; \
 	fi
 	
 	@if ! command -v npm &> /dev/null; then \
@@ -205,15 +198,6 @@ zsh:
 		echo "$(GREEN)Zsh installed successfully.$(RESET)"; \
 	else \
 		echo "$(GREEN)Zsh is already installed.$(RESET)"; \
-	fi
-
-git:
-	@if ! command -v git &> /dev/null; then \
-		echo "$(YELLOW)Installing Git...$(RESET)"; \
-		sudo apt-get install -y git; \
-		echo "$(GREEN)Git installed successfully.$(RESET)"; \
-	else \
-		echo "$(GREEN)Git is already installed.$(RESET)"; \
 	fi
 
 pip:
@@ -379,3 +363,4 @@ ansible:
 	else \
 		echo "$(GREEN)Ansible is already installed.$(RESET)"; \
 	fi
+
