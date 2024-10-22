@@ -33,6 +33,7 @@
 | 🐍 Python | Pip |
 | 🌐 Networking | Curl |
 | ✏️ Text Editor | Vim |
+| 📦 Compression | Unzip |
 | ☁️ Cloud & Orchestration | eksctl, AWS CLI, kubectl, Google Cloud SDK, Azure CLI |
 | 🚢 Kubernetes Development | Minikube, Kind |
 | 🏗️ Infrastructure as Code | Terraform, Ansible |

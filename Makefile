@@ -23,10 +23,11 @@ HAS_MINIKUBE := $(shell command -v minikube;)
 HAS_KIND := $(shell command -v kind;)
 HAS_TERRAFORM := $(shell command -v terraform;)
 HAS_ANSIBLE := $(shell command -v ansible;)
+HAS_UNZIP := $(shell command -v unzip;)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help prepare dockercli zsh PIP CURL VIM EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim eksctl awscli kubectl gcloud azure minikube kind terraform ansible
+.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
@@ -35,6 +36,7 @@ help:
 	@echo "  PIP                 Check if pip is installed"
 	@echo "  CURL                Check if curl is installed"
 	@echo "  VIM                 Check if vim is installed"
+	@echo "  UNZIP               Check if unzip is installed"
 	@echo "  EKSCTL              Check if eksctl is installed"
 	@echo "  AWSCLI              Check if awscli is installed"
 	@echo "  KUBECTL             Check if kubectl is installed"
@@ -78,6 +80,11 @@ install_all:
 	@if ! command -v vim &> /dev/null; then \
 		echo "$(YELLOW)Installing Vim...$(RESET)"; \
 		sudo apt-get install -y vim; \
+	fi
+	
+	@if ! command -v unzip &> /dev/null; then \
+		echo "$(YELLOW)Installing Unzip...$(RESET)"; \
+		sudo apt-get install -y unzip; \
 	fi
 	
 	@if ! command -v eksctl &> /dev/null; then \
@@ -195,6 +202,15 @@ vim:
 		echo "$(GREEN)Vim installed successfully.$(RESET)"; \
 	else \
 		echo "$(GREEN)Vim is already installed.$(RESET)"; \
+	fi
+
+unzip:
+	@if ! command -v unzip &> /dev/null; then \
+		echo "$(YELLOW)Installing Unzip...$(RESET)"; \
+		sudo apt-get install -y unzip; \
+		echo "$(GREEN)Unzip installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Unzip is already installed.$(RESET)"; \
 	fi
 
 eksctl:
