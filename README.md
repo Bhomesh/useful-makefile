@@ -15,9 +15,9 @@
 ## 🚀 Quick Start
 
 1. **Clone this repository:**   ```
-   git clone https://github.com/yourusername/devops-toolkit.git   ```
+   git clone https://github.com/bhomesh/useful_makefile.git   ```
 2. **Navigate to the project directory:**   ```
-   cd devops-toolkit   ```
+   cd useful_makefile   ```
 3. **Install all tools:**   ```
    make install_all   ```
    Or install specific tools:   ```
