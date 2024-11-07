@@ -318,3 +318,10 @@ terraform:
 	else \
 		echo "$(GREEN)Terraform is already installed.$(RESET)"; \
 	fi
+
+chrome:
+	sudo apt install -y google-chrome-stable
+
+brave:
+	sudo apt install -y brave-browser
+

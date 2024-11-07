@@ -6,11 +6,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Made with Make](https://img.shields.io/badge/Made%20with-Make-1f425f.svg)](https://www.gnu.org/software/make/)
 
-*Your one-stop solution for setting up a complete DevOps environment*
+*A comprehensive toolkit for DevOps engineers to set up their development environment*
 
 </div>
 
 ---
+
+## 🎯 Overview
+This toolkit provides a simple way to install and manage common DevOps tools using Makefiles. It supports automatic installation of various cloud, containerization, and development tools on Ubuntu-based systems.
 
 ## 🚀 Quick Start
 
