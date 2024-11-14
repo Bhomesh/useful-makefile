@@ -50,10 +50,11 @@ HAS_CHEF := $(shell command -v chef;)
 HAS_PUPPET := $(shell command -v puppet;)
 HAS_NGINX := $(shell command -v nginx;)
 HAS_APACHE := $(shell command -v apache2;)
+HAS_MONGODB_COMPASS := $(shell command -v mongodb-compass;)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible python3 java node npm codeclimate helm glasscube mysql mariadb postgres redis mongodb go thanos chef puppet nginx apache
+.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible python3 java node npm codeclimate helm glasscube mysql mariadb postgres redis mongodb go thanos chef puppet nginx apache mongodb-compass
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
@@ -96,6 +97,7 @@ help:
 	@echo "  PUPPET              Check if Puppet is installed"
 	@echo "  NGINX               Check if Nginx is installed"
 	@echo "  APACHE              Check if Apache is installed"
+	@echo "  MONGODB_COMPASS      Check if MongoDB Compass is installed"
 
 .PHONY: install_all
 install_all:
@@ -479,6 +481,13 @@ install_all:
 		echo "$(YELLOW)Apache is running at http://localhost:80$(RESET)"; \
 	else \
 		echo "$(GREEN)Apache is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v mongodb-compass &> /dev/null; then \
+		echo "$(YELLOW)Installing MongoDB Compass...$(RESET)"; \
+		wget https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb && \
+		sudo dpkg -i mongodb-compass_1.40.4_amd64.deb && \
+		rm mongodb-compass_1.40.4_amd64.deb; \
 	fi
 	
 	@echo "$(GREEN)All tools have been checked and installed if necessary.$(RESET)"
@@ -993,5 +1002,17 @@ apache:
 		echo "$(YELLOW)Apache is running at http://localhost:80$(RESET)"; \
 	else \
 		echo "$(GREEN)Apache is already installed.$(RESET)"; \
+	fi
+
+mongodb-compass:
+	@if ! command -v mongodb-compass &> /dev/null; then \
+		echo "$(YELLOW)Installing MongoDB Compass...$(RESET)"; \
+		wget https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb && \
+		sudo dpkg -i mongodb-compass_1.40.4_amd64.deb && \
+		rm mongodb-compass_1.40.4_amd64.deb; \
+		echo "$(GREEN)MongoDB Compass installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Launch MongoDB Compass from your applications menu$(RESET)"; \
+	else \
+		echo "$(GREEN)MongoDB Compass is already installed.$(RESET)"; \
 	fi
 

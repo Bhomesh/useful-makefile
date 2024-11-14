@@ -45,7 +45,7 @@ This toolkit provides a simple way to install and manage common DevOps tools usi
 | 🏗️ Infrastructure as Code | Terraform, Ansible, Chef, Puppet |
 | 📊 Monitoring & Observability | Prometheus, Grafana, Glasscube, Thanos |
 | 🔍 Code Quality & CI/CD | SonarQube, Jenkins, CodeClimate |
-| 💾 Databases | MySQL, MariaDB, PostgreSQL, Redis, MongoDB |
+| 💾 Databases | MySQL, MariaDB, PostgreSQL, Redis, MongoDB, MongoDB Compass |
 | 🔧 Programming Languages | Go |
 | 🌐 Web Servers | Nginx, Apache |
 
@@ -70,6 +70,7 @@ After installation, you can access:
 - MongoDB: localhost:27017
 - Redis: localhost:6379
 - Nginx/Apache: http://localhost:80
+- MongoDB Compass: Launch from applications menu (GUI MongoDB client)
 
 ## ⚠️ Prerequisites
 
