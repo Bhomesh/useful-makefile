@@ -9,21 +9,21 @@ WHITE  := $(shell tput -Txterm setaf 7)
 RESET  := $(shell tput -Txterm sgr0)
 
 # Check for installed tools
-HAS_DOCKERCLI := $(shell command -v docker;)
-HAS_ZSH := $(shell command -v zsh;)
-HAS_PIP := $(shell command -v pip;)
-HAS_CURL := $(shell command -v curl;)
-HAS_VIM := $(shell command -v vim;)
-HAS_EKSCTL := $(shell command -v eksctl;)
-HAS_AWSCLI := $(shell command -v aws;)
-HAS_KUBECTL := $(shell command -v kubectl;)
-HAS_GCLOUD := $(shell command -v gcloud;)
-HAS_AZURE := $(shell command -v az;)
-HAS_MINIKUBE := $(shell command -v minikube;)
-HAS_KIND := $(shell command -v kind;)
-HAS_TERRAFORM := $(shell command -v terraform;)
-HAS_ANSIBLE := $(shell command -v ansible;)
-HAS_UNZIP := $(shell command -v unzip;)
+HAS_DOCKER 		:= $(shell command -v docker;)
+HAS_ZSH 		:= $(shell command -v zsh;)
+HAS_PIP 		:= $(shell command -v pip;)
+HAS_CURL 		:= $(shell command -v curl;)
+HAS_VIM 		:= $(shell command -v vim;)
+HAS_EKSCTL 		:= $(shell command -v eksctl;)
+HAS_AWSCLI 		:= $(shell command -v aws;)
+HAS_KUBECTL 	:= $(shell command -v kubectl;)
+HAS_GCLOUD 		:= $(shell command -v gcloud;)
+HAS_AZURE 		:= $(shell command -v az;)
+HAS_MINIKUBE 	:= $(shell command -v minikube;)
+HAS_KIND 		:= $(shell command -v kind;)
+HAS_TERRAFORM 	:= $(shell command -v terraform;)
+HAS_ANSIBLE 	:= $(shell command -v ansible;)
+HAS_UNZIP 		:= $(shell command -v unzip;)
 
 .DEFAULT_GOAL := help
 
@@ -31,7 +31,7 @@ HAS_UNZIP := $(shell command -v unzip;)
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
-	@echo "  DOCKERCLI           Check if docker is installed"
+	@echo "  DOCKER           	 Check if docker is installed"
 	@echo "  ZSH                 Check if zsh is installed"
 	@echo "  PIP                 Check if pip is installed"
 	@echo "  CURL                Check if curl is installed"
