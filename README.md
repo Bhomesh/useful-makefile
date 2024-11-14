@@ -32,14 +32,19 @@ This toolkit provides a simple way to install and manage common DevOps tools usi
 | Category | Tools |
 |----------|-------|
 | 🐳 Containerization | Docker |
-| 🐚 Shell | Zsh |
-| 🐍 Python | Pip |
+| 🐚 Shell | Zsh + Oh My Zsh |
+| 🐍 Python | Python3, Pip |
+| ☕ Java | JDK, JVM |
+| 📦 Node.js | Node.js, NPM, NVM |
 | 🌐 Networking | Curl |
 | ✏️ Text Editor | Vim |
 | 📦 Compression | Unzip |
+| 🔄 Version Management | NVM |
 | ☁️ Cloud & Orchestration | eksctl, AWS CLI, kubectl, Google Cloud SDK, Azure CLI |
-| 🚢 Kubernetes Development | Minikube, Kind |
-| 🏗️ Infrastructure as Code |  Ansible |
+| 🚢 Kubernetes Development | Minikube, Kind, Kubeadm |
+| 🏗️ Infrastructure as Code | Terraform, Ansible |
+| 📊 Monitoring & Observability | Prometheus, Grafana |
+| 🔍 Code Quality & CI/CD | SonarQube, Jenkins |
 
 ## 📋 Usage Guide
 
@@ -47,8 +52,16 @@ This toolkit provides a simple way to install and manage common DevOps tools usi
 |---------|-------------|
 | `make help` | Display available commands |
 | `make install_all` | Install all tools |
-| `make <tool_name>` | Install a specific tool (e.g., `make docker`, `make terraform`) |
-| `make <TOOL_NAME>` | Check if a tool is installed (e.g., `make DOCKER`, `make TERRAFORM`) |
+| `make <tool_name>` | Install a specific tool (e.g., `make docker`, `make java`) |
+| `make <TOOL_NAME>` | Check if a tool is installed (e.g., `make DOCKER`, `make JAVA`) |
+
+## 🌐 Access URLs
+
+After installation, you can access:
+- Prometheus: http://localhost:9090
+- Grafana: http://localhost:3000 (default credentials: admin/admin)
+- Jenkins: http://localhost:8080 (initial password will be displayed during installation)
+- SonarQube: http://localhost:9000 (default credentials: admin/admin)
 
 ## ⚠️ Prerequisites
 
