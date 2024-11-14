@@ -36,10 +36,24 @@ HAS_JAVA := $(shell command -v java;)
 HAS_JAVAC := $(shell command -v javac;)
 HAS_NODE := $(shell command -v node;)
 HAS_NPM := $(shell command -v npm;)
+HAS_CODECLIMATE := $(shell command -v codeclimate;)
+HAS_HELM := $(shell command -v helm;)
+HAS_GLASSCUBE := $(shell command -v glasscube;)
+HAS_MYSQL := $(shell command -v mysql;)
+HAS_MARIADB := $(shell command -v mariadb;)
+HAS_POSTGRES := $(shell command -v psql;)
+HAS_REDIS := $(shell command -v redis-server;)
+HAS_MONGODB := $(shell command -v mongod;)
+HAS_GO := $(shell command -v go;)
+HAS_THANOS := $(shell command -v thanos;)
+HAS_CHEF := $(shell command -v chef;)
+HAS_PUPPET := $(shell command -v puppet;)
+HAS_NGINX := $(shell command -v nginx;)
+HAS_APACHE := $(shell command -v apache2;)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible python3 java node npm
+.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible python3 java node npm codeclimate helm glasscube mysql mariadb postgres redis mongodb go thanos chef puppet nginx apache
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
@@ -68,6 +82,20 @@ help:
 	@echo "  JAVA                Check if Java (JDK/JVM) is installed"
 	@echo "  NODE                Check if Node.js is installed"
 	@echo "  NPM                 Check if NPM is installed"
+	@echo "  CODECLIMATE         Check if CodeClimate is installed"
+	@echo "  HELM                Check if Helm is installed"
+	@echo "  GLASSCUBE           Check if Glasscube is installed"
+	@echo "  MYSQL               Check if MySQL is installed"
+	@echo "  MARIADB             Check if MariaDB is installed"
+	@echo "  POSTGRES            Check if PostgreSQL is installed"
+	@echo "  REDIS               Check if Redis is installed"
+	@echo "  MONGODB             Check if MongoDB is installed"
+	@echo "  GO                  Check if Go is installed"
+	@echo "  THANOS              Check if Thanos is installed"
+	@echo "  CHEF                Check if Chef is installed"
+	@echo "  PUPPET              Check if Puppet is installed"
+	@echo "  NGINX               Check if Nginx is installed"
+	@echo "  APACHE              Check if Apache is installed"
 
 .PHONY: install_all
 install_all:
@@ -301,6 +329,156 @@ install_all:
 	@if ! command -v npm &> /dev/null; then \
 		echo "$(YELLOW)Installing NPM...$(RESET)"; \
 		sudo apt-get install -y npm; \
+	fi
+	
+	@if ! command -v codeclimate &> /dev/null; then \
+		echo "$(YELLOW)Installing CodeClimate...$(RESET)"; \
+		curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz && \
+		cd codeclimate-master && \
+		sudo make install && \
+		cd .. && rm -rf codeclimate-master && \
+		sudo codeclimate engines:install; \
+	fi
+	
+	@if ! command -v helm &> /dev/null; then \
+		echo "$(YELLOW)Installing Helm...$(RESET)"; \
+		curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null && \
+		echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list && \
+		sudo apt-get update && \
+		sudo apt-get install -y helm; \
+	fi
+	
+	@if ! command -v glasscube &> /dev/null; then \
+		echo "$(YELLOW)Installing Glasscube...$(RESET)"; \
+		curl -fsSL https://raw.githubusercontent.com/glasscube/glasscube/main/install.sh | sudo bash; \
+	fi
+	
+	@if ! command -v mysql &> /dev/null; then \
+		echo "$(YELLOW)Installing MySQL...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y mysql-server && \
+		sudo systemctl enable mysql && \
+		sudo systemctl start mysql; \
+		echo "$(GREEN)MySQL installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Run 'sudo mysql_secure_installation' to secure your installation$(RESET)"; \
+	else \
+		echo "$(GREEN)MySQL is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v mariadb &> /dev/null; then \
+		echo "$(YELLOW)Installing MariaDB...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y mariadb-server && \
+		sudo systemctl enable mariadb && \
+		sudo systemctl start mariadb; \
+		echo "$(GREEN)MariaDB installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Run 'sudo mysql_secure_installation' to secure your installation$(RESET)"; \
+	else \
+		echo "$(GREEN)MariaDB is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v psql &> /dev/null; then \
+		echo "$(YELLOW)Installing PostgreSQL...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y postgresql postgresql-contrib && \
+		sudo systemctl enable postgresql && \
+		sudo systemctl start postgresql; \
+		echo "$(GREEN)PostgreSQL installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Default superuser: postgres$(RESET)"; \
+	else \
+		echo "$(GREEN)PostgreSQL is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v redis-server &> /dev/null; then \
+		echo "$(YELLOW)Installing Redis...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y redis-server && \
+		sudo systemctl enable redis-server && \
+		sudo systemctl start redis-server; \
+		echo "$(GREEN)Redis installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Redis is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v mongod &> /dev/null; then \
+		echo "$(YELLOW)Installing MongoDB...$(RESET)"; \
+		wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add - && \
+		echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $$(lsb_release -cs)/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list && \
+		sudo apt-get update && \
+		sudo apt-get install -y mongodb-org && \
+		sudo systemctl enable mongod && \
+		sudo systemctl start mongod; \
+		echo "$(GREEN)MongoDB installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)MongoDB is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v go &> /dev/null; then \
+		echo "$(YELLOW)Installing Go...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y golang-go; \
+		echo "$(GREEN)Go installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Go version:$(RESET)"; \
+		go version; \
+	else \
+		echo "$(GREEN)Go is already installed.$(RESET)"; \
+		echo "$(YELLOW)Go version:$(RESET)"; \
+		go version; \
+	fi
+	
+	@if ! command -v thanos &> /dev/null; then \
+		echo "$(YELLOW)Installing Thanos...$(RESET)"; \
+		wget https://github.com/thanos-io/thanos/releases/latest/download/thanos-$$(uname -s)-$$(uname -m).tar.gz && \
+		tar -xvf thanos-$$(uname -s)-$$(uname -m).tar.gz && \
+		sudo mv thanos /usr/local/bin/ && \
+		rm thanos-$$(uname -s)-$$(uname -m).tar.gz; \
+		echo "$(GREEN)Thanos installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Thanos is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v chef &> /dev/null; then \
+		echo "$(YELLOW)Installing Chef...$(RESET)"; \
+		curl -L https://omnitruck.chef.io/install.sh | sudo bash; \
+		echo "$(GREEN)Chef installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Chef is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v puppet &> /dev/null; then \
+		echo "$(YELLOW)Installing Puppet...$(RESET)"; \
+		wget https://apt.puppetlabs.com/puppet7-release-$$(lsb_release -cs).deb && \
+		sudo dpkg -i puppet7-release-$$(lsb_release -cs).deb && \
+		sudo apt-get update && \
+		sudo apt-get install -y puppet-agent && \
+		rm puppet7-release-$$(lsb_release -cs).deb; \
+		echo "$(GREEN)Puppet installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Puppet is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v nginx &> /dev/null; then \
+		echo "$(YELLOW)Installing Nginx...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y nginx && \
+		sudo systemctl enable nginx && \
+		sudo systemctl start nginx; \
+		echo "$(GREEN)Nginx installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Nginx is running at http://localhost:80$(RESET)"; \
+	else \
+		echo "$(GREEN)Nginx is already installed.$(RESET)"; \
+	fi
+	
+	@if ! command -v apache2 &> /dev/null; then \
+		echo "$(YELLOW)Installing Apache...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y apache2 && \
+		sudo systemctl enable apache2 && \
+		sudo systemctl start apache2; \
+		echo "$(GREEN)Apache installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Apache is running at http://localhost:80$(RESET)"; \
+	else \
+		echo "$(GREEN)Apache is already installed.$(RESET)"; \
 	fi
 	
 	@echo "$(GREEN)All tools have been checked and installed if necessary.$(RESET)"
@@ -636,5 +814,184 @@ npm:
 		echo "$(GREEN)NPM is already installed.$(RESET)"; \
 		echo "$(YELLOW)NPM version:$(RESET)"; \
 		npm --version; \
+	fi
+
+codeclimate:
+	@if ! command -v codeclimate &> /dev/null; then \
+		echo "$(YELLOW)Installing CodeClimate...$(RESET)"; \
+		curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz && \
+		cd codeclimate-master && \
+		sudo make install && \
+		cd .. && rm -rf codeclimate-master && \
+		sudo codeclimate engines:install; \
+		echo "$(GREEN)CodeClimate installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Run 'codeclimate help' for usage information$(RESET)"; \
+	else \
+		echo "$(GREEN)CodeClimate is already installed.$(RESET)"; \
+	fi
+
+helm:
+	@if ! command -v helm &> /dev/null; then \
+		echo "$(YELLOW)Installing Helm...$(RESET)"; \
+		curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null && \
+		echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list && \
+		sudo apt-get update && \
+		sudo apt-get install -y helm; \
+		echo "$(GREEN)Helm installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Helm version:$(RESET)"; \
+		helm version; \
+	else \
+		echo "$(GREEN)Helm is already installed.$(RESET)"; \
+		echo "$(YELLOW)Helm version:$(RESET)"; \
+		helm version; \
+	fi
+
+glasscube:
+	@if ! command -v glasscube &> /dev/null; then \
+		echo "$(YELLOW)Installing Glasscube...$(RESET)"; \
+		curl -fsSL https://raw.githubusercontent.com/glasscube/glasscube/main/install.sh | sudo bash; \
+		echo "$(GREEN)Glasscube installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Run 'glasscube --help' for usage information$(RESET)"; \
+	else \
+		echo "$(GREEN)Glasscube is already installed.$(RESET)"; \
+	fi
+
+mysql:
+	@if ! command -v mysql &> /dev/null; then \
+		echo "$(YELLOW)Installing MySQL...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y mysql-server && \
+		sudo systemctl enable mysql && \
+		sudo systemctl start mysql; \
+		echo "$(GREEN)MySQL installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Run 'sudo mysql_secure_installation' to secure your installation$(RESET)"; \
+	else \
+		echo "$(GREEN)MySQL is already installed.$(RESET)"; \
+	fi
+
+mariadb:
+	@if ! command -v mariadb &> /dev/null; then \
+		echo "$(YELLOW)Installing MariaDB...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y mariadb-server && \
+		sudo systemctl enable mariadb && \
+		sudo systemctl start mariadb; \
+		echo "$(GREEN)MariaDB installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Run 'sudo mysql_secure_installation' to secure your installation$(RESET)"; \
+	else \
+		echo "$(GREEN)MariaDB is already installed.$(RESET)"; \
+	fi
+
+postgres:
+	@if ! command -v psql &> /dev/null; then \
+		echo "$(YELLOW)Installing PostgreSQL...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y postgresql postgresql-contrib && \
+		sudo systemctl enable postgresql && \
+		sudo systemctl start postgresql; \
+		echo "$(GREEN)PostgreSQL installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Default superuser: postgres$(RESET)"; \
+	else \
+		echo "$(GREEN)PostgreSQL is already installed.$(RESET)"; \
+	fi
+
+redis:
+	@if ! command -v redis-server &> /dev/null; then \
+		echo "$(YELLOW)Installing Redis...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y redis-server && \
+		sudo systemctl enable redis-server && \
+		sudo systemctl start redis-server; \
+		echo "$(GREEN)Redis installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Redis is already installed.$(RESET)"; \
+	fi
+
+mongodb:
+	@if ! command -v mongod &> /dev/null; then \
+		echo "$(YELLOW)Installing MongoDB...$(RESET)"; \
+		wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add - && \
+		echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $$(lsb_release -cs)/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list && \
+		sudo apt-get update && \
+		sudo apt-get install -y mongodb-org && \
+		sudo systemctl enable mongod && \
+		sudo systemctl start mongod; \
+		echo "$(GREEN)MongoDB installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)MongoDB is already installed.$(RESET)"; \
+	fi
+
+go:
+	@if ! command -v go &> /dev/null; then \
+		echo "$(YELLOW)Installing Go...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y golang-go; \
+		echo "$(GREEN)Go installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Go version:$(RESET)"; \
+		go version; \
+	else \
+		echo "$(GREEN)Go is already installed.$(RESET)"; \
+		echo "$(YELLOW)Go version:$(RESET)"; \
+		go version; \
+	fi
+
+thanos:
+	@if ! command -v thanos &> /dev/null; then \
+		echo "$(YELLOW)Installing Thanos...$(RESET)"; \
+		wget https://github.com/thanos-io/thanos/releases/latest/download/thanos-$$(uname -s)-$$(uname -m).tar.gz && \
+		tar -xvf thanos-$$(uname -s)-$$(uname -m).tar.gz && \
+		sudo mv thanos /usr/local/bin/ && \
+		rm thanos-$$(uname -s)-$$(uname -m).tar.gz; \
+		echo "$(GREEN)Thanos installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Thanos is already installed.$(RESET)"; \
+	fi
+
+chef:
+	@if ! command -v chef &> /dev/null; then \
+		echo "$(YELLOW)Installing Chef...$(RESET)"; \
+		curl -L https://omnitruck.chef.io/install.sh | sudo bash; \
+		echo "$(GREEN)Chef installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Chef is already installed.$(RESET)"; \
+	fi
+
+puppet:
+	@if ! command -v puppet &> /dev/null; then \
+		echo "$(YELLOW)Installing Puppet...$(RESET)"; \
+		wget https://apt.puppetlabs.com/puppet7-release-$$(lsb_release -cs).deb && \
+		sudo dpkg -i puppet7-release-$$(lsb_release -cs).deb && \
+		sudo apt-get update && \
+		sudo apt-get install -y puppet-agent && \
+		rm puppet7-release-$$(lsb_release -cs).deb; \
+		echo "$(GREEN)Puppet installed successfully.$(RESET)"; \
+	else \
+		echo "$(GREEN)Puppet is already installed.$(RESET)"; \
+	fi
+
+nginx:
+	@if ! command -v nginx &> /dev/null; then \
+		echo "$(YELLOW)Installing Nginx...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y nginx && \
+		sudo systemctl enable nginx && \
+		sudo systemctl start nginx; \
+		echo "$(GREEN)Nginx installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Nginx is running at http://localhost:80$(RESET)"; \
+	else \
+		echo "$(GREEN)Nginx is already installed.$(RESET)"; \
+	fi
+
+apache:
+	@if ! command -v apache2 &> /dev/null; then \
+		echo "$(YELLOW)Installing Apache...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y apache2 && \
+		sudo systemctl enable apache2 && \
+		sudo systemctl start apache2; \
+		echo "$(GREEN)Apache installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Apache is running at http://localhost:80$(RESET)"; \
+	else \
+		echo "$(GREEN)Apache is already installed.$(RESET)"; \
 	fi
 

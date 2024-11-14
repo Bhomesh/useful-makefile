@@ -41,10 +41,13 @@ This toolkit provides a simple way to install and manage common DevOps tools usi
 | 📦 Compression | Unzip |
 | 🔄 Version Management | NVM |
 | ☁️ Cloud & Orchestration | eksctl, AWS CLI, kubectl, Google Cloud SDK, Azure CLI |
-| 🚢 Kubernetes Development | Minikube, Kind, Kubeadm |
-| 🏗️ Infrastructure as Code | Terraform, Ansible |
-| 📊 Monitoring & Observability | Prometheus, Grafana |
-| 🔍 Code Quality & CI/CD | SonarQube, Jenkins |
+| 🚢 Kubernetes Development | Minikube, Kind, Kubeadm, Helm |
+| 🏗️ Infrastructure as Code | Terraform, Ansible, Chef, Puppet |
+| 📊 Monitoring & Observability | Prometheus, Grafana, Glasscube, Thanos |
+| 🔍 Code Quality & CI/CD | SonarQube, Jenkins, CodeClimate |
+| 💾 Databases | MySQL, MariaDB, PostgreSQL, Redis, MongoDB |
+| 🔧 Programming Languages | Go |
+| 🌐 Web Servers | Nginx, Apache |
 
 ## 📋 Usage Guide
 
@@ -52,16 +55,21 @@ This toolkit provides a simple way to install and manage common DevOps tools usi
 |---------|-------------|
 | `make help` | Display available commands |
 | `make install_all` | Install all tools |
-| `make <tool_name>` | Install a specific tool (e.g., `make docker`, `make java`) |
-| `make <TOOL_NAME>` | Check if a tool is installed (e.g., `make DOCKER`, `make JAVA`) |
+| `make <tool_name>` | Install a specific tool (e.g., `make docker`, `make helm`) |
+| `make <TOOL_NAME>` | Check if a tool is installed (e.g., `make DOCKER`, `make HELM`) |
 
-## 🌐 Access URLs
+## 🌐 Access URLs & Tools
 
 After installation, you can access:
 - Prometheus: http://localhost:9090
 - Grafana: http://localhost:3000 (default credentials: admin/admin)
 - Jenkins: http://localhost:8080 (initial password will be displayed during installation)
 - SonarQube: http://localhost:9000 (default credentials: admin/admin)
+- MySQL/MariaDB: localhost:3306
+- PostgreSQL: localhost:5432
+- MongoDB: localhost:27017
+- Redis: localhost:6379
+- Nginx/Apache: http://localhost:80
 
 ## ⚠️ Prerequisites
 
