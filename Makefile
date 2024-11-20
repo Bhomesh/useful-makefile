@@ -58,180 +58,180 @@ HAS_MONGODB_COMPASS := $(shell command -v mongodb-compass;)
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
-	@if command -v docker &> /dev/null; then \
-		echo "  DOCKER             ✅ Docker is installed"; \
+	@if [ "$(HAS_DOCKER)" ]; then \
+		echo "  DOCKER             $(GREEN)✅ Docker is installed$(RESET)"; \
 	else \
-		echo "  DOCKER             ❌ Docker is not installed"; \
+		echo "  DOCKER             $(RED)❌ Docker is not installed$(RESET)"; \
 	fi
-	@if command -v zsh &> /dev/null; then \
-		echo "  ZSH                ✅ Zsh is installed"; \
+	@if [ "$(HAS_ZSH)" ]; then \
+		echo "  ZSH                $(GREEN)✅ Zsh is installed$(RESET)"; \
 	else \
-		echo "  ZSH                ❌ Zsh is not installed"; \
+		echo "  ZSH                $(RED)❌ Zsh is not installed$(RESET)"; \
 	fi
-	@if command -v python3 &> /dev/null; then \
-		echo "  PYTHON3            ✅ Python3 is installed"; \
+	@if [ "$(HAS_PYTHON3)" ]; then \
+		echo "  PYTHON3            $(GREEN)✅ Python3 is installed$(RESET)"; \
 	else \
-		echo "  PYTHON3            ❌ Python3 is not installed"; \
+		echo "  PYTHON3            $(RED)❌ Python3 is not installed$(RESET)"; \
 	fi
-	@if command -v pip &> /dev/null; then \
-		echo "  PIP                ✅ Pip is installed"; \
+	@if [ "$(HAS_PIP)" ]; then \
+		echo "  PIP                $(GREEN)✅ Pip is installed$(RESET)"; \
 	else \
-		echo "  PIP                ❌ Pip is not installed"; \
+		echo "  PIP                $(RED)❌ Pip is not installed$(RESET)"; \
 	fi
-	@if command -v curl &> /dev/null; then \
-		echo "  CURL               ✅ Curl is installed"; \
+	@if [ "$(HAS_CURL)" ]; then \
+		echo "  CURL               $(GREEN)✅ Curl is installed$(RESET)"; \
 	else \
-		echo "  CURL               ❌ Curl is not installed"; \
+		echo "  CURL               $(RED)❌ Curl is not installed$(RESET)"; \
 	fi
-	@if command -v vim &> /dev/null; then \
-		echo "  VIM                ✅ Vim is installed"; \
+	@if [ "$(HAS_VIM)" ]; then \
+		echo "  VIM                $(GREEN)✅ Vim is installed$(RESET)"; \
 	else \
-		echo "  VIM                ❌ Vim is not installed"; \
+		echo "  VIM                $(RED)❌ Vim is not installed$(RESET)"; \
 	fi
-	@if command -v unzip &> /dev/null; then \
-		echo "  UNZIP              ✅ Unzip is installed"; \
+	@if [ "$(HAS_UNZIP)" ]; then \
+		echo "  UNZIP              $(GREEN)✅ Unzip is installed$(RESET)"; \
 	else \
-		echo "  UNZIP              ❌ Unzip is not installed"; \
+		echo "  UNZIP              $(RED)❌ Unzip is not installed$(RESET)"; \
 	fi
-	@if command -v eksctl &> /dev/null; then \
-		echo "  EKSCTL             ✅ eksctl is installed"; \
+	@if [ "$(HAS_EKSCTL)" ]; then \
+		echo "  EKSCTL             $(GREEN)✅ eksctl is installed$(RESET)"; \
 	else \
-		echo "  EKSCTL             ❌ eksctl is not installed"; \
+		echo "  EKSCTL             $(RED)❌ eksctl is not installed$(RESET)"; \
 	fi
-	@if command -v aws &> /dev/null; then \
-		echo "  AWSCLI             ✅ AWS CLI is installed"; \
+	@if [ "$(HAS_AWSCLI)" ]; then \
+		echo "  AWSCLI             $(GREEN)✅ AWS CLI is installed$(RESET)"; \
 	else \
-		echo "  AWSCLI             ❌ AWS CLI is not installed"; \
+		echo "  AWSCLI             $(RED)❌ AWS CLI is not installed$(RESET)"; \
 	fi
-	@if command -v kubectl &> /dev/null; then \
-		echo "  KUBECTL            ✅ kubectl is installed"; \
+	@if [ "$(HAS_KUBECTL)" ]; then \
+		echo "  KUBECTL            $(GREEN)✅ kubectl is installed$(RESET)"; \
 	else \
-		echo "  KUBECTL            ❌ kubectl is not installed"; \
+		echo "  KUBECTL            $(RED)❌ kubectl is not installed$(RESET)"; \
 	fi
-	@if command -v gcloud &> /dev/null; then \
-		echo "  GCLOUD             ✅ Google Cloud SDK is installed"; \
+	@if [ "$(HAS_GCLOUD)" ]; then \
+		echo "  GCLOUD             $(GREEN)✅ Google Cloud SDK is installed$(RESET)"; \
 	else \
-		echo "  GCLOUD             ❌ Google Cloud SDK is not installed"; \
+		echo "  GCLOUD             $(RED)❌ Google Cloud SDK is not installed$(RESET)"; \
 	fi
-	@if command -v az &> /dev/null; then \
-		echo "  AZURE              ✅ Azure CLI is installed"; \
+	@if [ "$(HAS_AZURE)" ]; then \
+		echo "  AZURE              $(GREEN)✅ Azure CLI is installed$(RESET)"; \
 	else \
-		echo "  AZURE              ❌ Azure CLI is not installed"; \
+		echo "  AZURE              $(RED)❌ Azure CLI is not installed$(RESET)"; \
 	fi
-	@if command -v minikube &> /dev/null; then \
-		echo "  MINIKUBE           ✅ Minikube is installed"; \
+	@if [ "$(HAS_MINIKUBE)" ]; then \
+		echo "  MINIKUBE           $(GREEN)✅ Minikube is installed$(RESET)"; \
 	else \
-		echo "  MINIKUBE           ❌ Minikube is not installed"; \
+		echo "  MINIKUBE           $(RED)❌ Minikube is not installed$(RESET)"; \
 	fi
-	@if command -v kind &> /dev/null; then \
-		echo "  KIND               ✅ Kind is installed"; \
+	@if [ "$(HAS_KIND)" ]; then \
+		echo "  KIND               $(GREEN)✅ Kind is installed$(RESET)"; \
 	else \
-		echo "  KIND               ❌ Kind is not installed"; \
+		echo "  KIND               $(RED)❌ Kind is not installed$(RESET)"; \
 	fi
-	@if command -v terraform &> /dev/null; then \
-		echo "  TERRAFORM          ✅ Terraform is installed"; \
+	@if [ "$(HAS_TERRAFORM)" ]; then \
+		echo "  TERRAFORM          $(GREEN)✅ Terraform is installed$(RESET)"; \
 	else \
-		echo "  TERRAFORM          ❌ Terraform is not installed"; \
+		echo "  TERRAFORM          $(RED)❌ Terraform is not installed$(RESET)"; \
 	fi
-	@if command -v ansible &> /dev/null; then \
-		echo "  ANSIBLE            ✅ Ansible is installed"; \
+	@if [ "$(HAS_ANSIBLE)" ]; then \
+		echo "  ANSIBLE            $(GREEN)✅ Ansible is installed$(RESET)"; \
 	else \
-		echo "  ANSIBLE            ❌ Ansible is not installed"; \
+		echo "  ANSIBLE            $(RED)❌ Ansible is not installed$(RESET)"; \
 	fi
-	@if command -v prometheus &> /dev/null; then \
-		echo "  PROMETHEUS         ✅ Prometheus is installed"; \
+	@if [ "$(HAS_PROMETHEUS)" ]; then \
+		echo "  PROMETHEUS         $(GREEN)✅ Prometheus is installed$(RESET)"; \
 	else \
-		echo "  PROMETHEUS         ❌ Prometheus is not installed"; \
+		echo "  PROMETHEUS         $(RED)❌ Prometheus is not installed$(RESET)"; \
 	fi
-	@if command -v grafana-server &> /dev/null; then \
-		echo "  GRAFANA            ✅ Grafana is installed"; \
+	@if [ "$(HAS_GRAFANA)" ]; then \
+		echo "  GRAFANA            $(GREEN)✅ Grafana is installed$(RESET)"; \
 	else \
-		echo "  GRAFANA            ❌ Grafana is not installed"; \
+		echo "  GRAFANA            $(RED)❌ Grafana is not installed$(RESET)"; \
 	fi
-	@if command -v sonar-scanner &> /dev/null; then \
-		echo "  SONARQUBE          ✅ SonarQube is installed"; \
+	@if [ "$(HAS_SONARQUBE)" ]; then \
+		echo "  SONARQUBE          $(GREEN)✅ SonarQube is installed$(RESET)"; \
 	else \
-		echo "  SONARQUBE          ❌ SonarQube is not installed"; \
+		echo "  SONARQUBE          $(RED)❌ SonarQube is not installed$(RESET)"; \
 	fi
-	@if command -v jenkins &> /dev/null; then \
-		echo "  JENKINS            ✅ Jenkins is installed"; \
+	@if [ "$(HAS_JENKINS)" ]; then \
+		echo "  JENKINS            $(GREEN)✅ Jenkins is installed$(RESET)"; \
 	else \
-		echo "  JENKINS            ❌ Jenkins is not installed"; \
+		echo "  JENKINS            $(RED)❌ Jenkins is not installed$(RESET)"; \
 	fi
-	@if command -v codeclimate &> /dev/null; then \
-		echo "  CODECLIMATE        ✅ CodeClimate is installed"; \
+	@if [ "$(HAS_CODECLIMATE)" ]; then \
+		echo "  CODECLIMATE        $(GREEN)✅ CodeClimate is installed$(RESET)"; \
 	else \
-		echo "  CODECLIMATE        ❌ CodeClimate is not installed"; \
+		echo "  CODECLIMATE        $(RED)❌ CodeClimate is not installed$(RESET)"; \
 	fi
-	@if command -v helm &> /dev/null; then \
-		echo "  HELM               ✅ Helm is installed"; \
+	@if [ "$(HAS_HELM)" ]; then \
+		echo "  HELM               $(GREEN)✅ Helm is installed$(RESET)"; \
 	else \
-		echo "  HELM               ❌ Helm is not installed"; \
+		echo "  HELM               $(RED)❌ Helm is not installed$(RESET)"; \
 	fi
-	@if command -v glasscube &> /dev/null; then \
-		echo "  GLASSCUBE          ✅ Glasscube is installed"; \
+	@if [ "$(HAS_GLASSCUBE)" ]; then \
+		echo "  GLASSCUBE          $(GREEN)✅ Glasscube is installed$(RESET)"; \
 	else \
-		echo "  GLASSCUBE          ❌ Glasscube is not installed"; \
+		echo "  GLASSCUBE          $(RED)❌ Glasscube is not installed$(RESET)"; \
 	fi
-	@if command -v mysql &> /dev/null; then \
-		echo "  MYSQL              ✅ MySQL is installed"; \
+	@if [ "$(HAS_MYSQL)" ]; then \
+		echo "  MYSQL              $(GREEN)✅ MySQL is installed$(RESET)"; \
 	else \
-		echo "  MYSQL              ❌ MySQL is not installed"; \
+		echo "  MYSQL              $(RED)❌ MySQL is not installed$(RESET)"; \
 	fi
-	@if command -v mariadb &> /dev/null; then \
-		echo "  MARIADB            ✅ MariaDB is installed"; \
+	@if [ "$(HAS_MARIADB)" ]; then \
+		echo "  MARIADB            $(GREEN)✅ MariaDB is installed$(RESET)"; \
 	else \
-		echo "  MARIADB            ❌ MariaDB is not installed"; \
+		echo "  MARIADB            $(RED)❌ MariaDB is not installed$(RESET)"; \
 	fi
-	@if command -v psql &> /dev/null; then \
-		echo "  POSTGRES           ✅ PostgreSQL is installed"; \
+	@if [ "$(HAS_POSTGRES)" ]; then \
+		echo "  POSTGRES           $(GREEN)✅ PostgreSQL is installed$(RESET)"; \
 	else \
-		echo "  POSTGRES           ❌ PostgreSQL is not installed"; \
+		echo "  POSTGRES           $(RED)❌ PostgreSQL is not installed$(RESET)"; \
 	fi
-	@if command -v redis-server &> /dev/null; then \
-		echo "  REDIS              ✅ Redis is installed"; \
+	@if [ "$(HAS_REDIS)" ]; then \
+		echo "  REDIS              $(GREEN)✅ Redis is installed$(RESET)"; \
 	else \
-		echo "  REDIS              ❌ Redis is not installed"; \
+		echo "  REDIS              $(RED)❌ Redis is not installed$(RESET)"; \
 	fi
-	@if command -v mongod &> /dev/null; then \
-		echo "  MONGODB            ✅ MongoDB is installed"; \
+	@if [ "$(HAS_MONGODB)" ]; then \
+		echo "  MONGODB            $(GREEN)✅ MongoDB is installed$(RESET)"; \
 	else \
-		echo "  MONGODB            ❌ MongoDB is not installed"; \
+		echo "  MONGODB            $(RED)❌ MongoDB is not installed$(RESET)"; \
 	fi
-	@if command -v mongodb-compass &> /dev/null; then \
-		echo "  MONGODB_COMPASS    ✅ MongoDB Compass is installed"; \
+	@if [ "$(HAS_MONGODB_COMPASS)" ]; then \
+		echo "  MONGODB_COMPASS    $(GREEN)✅ MongoDB Compass is installed$(RESET)"; \
 	else \
-		echo "  MONGODB_COMPASS    ❌ MongoDB Compass is not installed"; \
+		echo "  MONGODB_COMPASS    $(RED)❌ MongoDB Compass is not installed$(RESET)"; \
 	fi
-	@if command -v go &> /dev/null; then \
-		echo "  GO                 ✅ Go is installed"; \
+	@if [ "$(HAS_GO)" ]; then \
+		echo "  GO                 $(GREEN)✅ Go is installed$(RESET)"; \
 	else \
-		echo "  GO                 ❌ Go is not installed"; \
+		echo "  GO                 $(RED)❌ Go is not installed$(RESET)"; \
 	fi
-	@if command -v thanos &> /dev/null; then \
-		echo "  THANOS             ✅ Thanos is installed"; \
+	@if [ "$(HAS_THANOS)" ]; then \
+		echo "  THANOS             $(GREEN)✅ Thanos is installed$(RESET)"; \
 	else \
-		echo "  THANOS             ❌ Thanos is not installed"; \
+		echo "  THANOS             $(RED)❌ Thanos is not installed$(RESET)"; \
 	fi
-	@if command -v chef &> /dev/null; then \
-		echo "  CHEF               ✅ Chef is installed"; \
+	@if [ "$(HAS_CHEF)" ]; then \
+		echo "  CHEF               $(GREEN)✅ Chef is installed$(RESET)"; \
 	else \
-		echo "  CHEF               ❌ Chef is not installed"; \
+		echo "  CHEF               $(RED)❌ Chef is not installed$(RESET)"; \
 	fi
-	@if command -v puppet &> /dev/null; then \
-		echo "  PUPPET             ✅ Puppet is installed"; \
+	@if [ "$(HAS_PUPPET)" ]; then \
+		echo "  PUPPET             $(GREEN)✅ Puppet is installed$(RESET)"; \
 	else \
-		echo "  PUPPET             ❌ Puppet is not installed"; \
+		echo "  PUPPET             $(RED)❌ Puppet is not installed$(RESET)"; \
 	fi
-	@if command -v nginx &> /dev/null; then \
-		echo "  NGINX              ✅ Nginx is installed"; \
+	@if [ "$(HAS_NGINX)" ]; then \
+		echo "  NGINX              $(GREEN)✅ Nginx is installed$(RESET)"; \
 	else \
-		echo "  NGINX              ❌ Nginx is not installed"; \
+		echo "  NGINX              $(RED)❌ Nginx is not installed$(RESET)"; \
 	fi
-	@if command -v apache2 &> /dev/null; then \
-		echo "  APACHE             ✅ Apache is installed"; \
+	@if [ "$(HAS_APACHE)" ]; then \
+		echo "  APACHE             $(GREEN)✅ Apache is installed$(RESET)"; \
 	else \
-		echo "  APACHE             ❌ Apache is not installed"; \
+		echo "  APACHE             $(RED)❌ Apache is not installed$(RESET)"; \
 	fi
 
 .PHONY: install_all
