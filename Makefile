@@ -58,46 +58,181 @@ HAS_MONGODB_COMPASS := $(shell command -v mongodb-compass;)
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
-	@echo "  DOCKER           	 Check if docker is installed"
-	@echo "  ZSH                 Check if zsh is installed"
-	@echo "  PIP                 Check if pip is installed"
-	@echo "  CURL                Check if curl is installed"
-	@echo "  VIM                 Check if vim is installed"
-	@echo "  UNZIP               Check if unzip is installed"
-	@echo "  EKSCTL              Check if eksctl is installed"
-	@echo "  AWSCLI              Check if awscli is installed"
-	@echo "  KUBECTL             Check if kubectl is installed"
-	@echo "  GCLOUD              Check if Google Cloud SDK is installed"
-	@echo "  AZURE               Check if Azure CLI is installed"
-	@echo "  MINIKUBE            Check if Minikube is installed"
-	@echo "  KIND                Check if Kind is installed"
-	@echo "  TERRAFORM           Check if Terraform is installed"
-	@echo "  ANSIBLE             Check if Ansible is installed"
-	@echo "  PYTHON3             Check if Python3 is installed"
-	@echo "  NVM                 Check if Node Version Manager is installed"
-	@echo "  KUBEADM             Check if Kubeadm is installed"
-	@echo "  PROMETHEUS          Check if Prometheus is installed"
-	@echo "  GRAFANA             Check if Grafana is installed"
-	@echo "  SONARQUBE           Check if SonarQube is installed"
-	@echo "  JENKINS             Check if Jenkins is installed"
-	@echo "  JAVA                Check if Java (JDK/JVM) is installed"
-	@echo "  NODE                Check if Node.js is installed"
-	@echo "  NPM                 Check if NPM is installed"
-	@echo "  CODECLIMATE         Check if CodeClimate is installed"
-	@echo "  HELM                Check if Helm is installed"
-	@echo "  GLASSCUBE           Check if Glasscube is installed"
-	@echo "  MYSQL               Check if MySQL is installed"
-	@echo "  MARIADB             Check if MariaDB is installed"
-	@echo "  POSTGRES            Check if PostgreSQL is installed"
-	@echo "  REDIS               Check if Redis is installed"
-	@echo "  MONGODB             Check if MongoDB is installed"
-	@echo "  GO                  Check if Go is installed"
-	@echo "  THANOS              Check if Thanos is installed"
-	@echo "  CHEF                Check if Chef is installed"
-	@echo "  PUPPET              Check if Puppet is installed"
-	@echo "  NGINX               Check if Nginx is installed"
-	@echo "  APACHE              Check if Apache is installed"
-	@echo "  MONGODB_COMPASS      Check if MongoDB Compass is installed"
+	@if command -v docker &> /dev/null; then \
+		echo "  DOCKER             ✅ Docker is installed"; \
+	else \
+		echo "  DOCKER             ❌ Docker is not installed"; \
+	fi
+	@if command -v zsh &> /dev/null; then \
+		echo "  ZSH                ✅ Zsh is installed"; \
+	else \
+		echo "  ZSH                ❌ Zsh is not installed"; \
+	fi
+	@if command -v python3 &> /dev/null; then \
+		echo "  PYTHON3            ✅ Python3 is installed"; \
+	else \
+		echo "  PYTHON3            ❌ Python3 is not installed"; \
+	fi
+	@if command -v pip &> /dev/null; then \
+		echo "  PIP                ✅ Pip is installed"; \
+	else \
+		echo "  PIP                ❌ Pip is not installed"; \
+	fi
+	@if command -v curl &> /dev/null; then \
+		echo "  CURL               ✅ Curl is installed"; \
+	else \
+		echo "  CURL               ❌ Curl is not installed"; \
+	fi
+	@if command -v vim &> /dev/null; then \
+		echo "  VIM                ✅ Vim is installed"; \
+	else \
+		echo "  VIM                ❌ Vim is not installed"; \
+	fi
+	@if command -v unzip &> /dev/null; then \
+		echo "  UNZIP              ✅ Unzip is installed"; \
+	else \
+		echo "  UNZIP              ❌ Unzip is not installed"; \
+	fi
+	@if command -v eksctl &> /dev/null; then \
+		echo "  EKSCTL             ✅ eksctl is installed"; \
+	else \
+		echo "  EKSCTL             ❌ eksctl is not installed"; \
+	fi
+	@if command -v aws &> /dev/null; then \
+		echo "  AWSCLI             ✅ AWS CLI is installed"; \
+	else \
+		echo "  AWSCLI             ❌ AWS CLI is not installed"; \
+	fi
+	@if command -v kubectl &> /dev/null; then \
+		echo "  KUBECTL            ✅ kubectl is installed"; \
+	else \
+		echo "  KUBECTL            ❌ kubectl is not installed"; \
+	fi
+	@if command -v gcloud &> /dev/null; then \
+		echo "  GCLOUD             ✅ Google Cloud SDK is installed"; \
+	else \
+		echo "  GCLOUD             ❌ Google Cloud SDK is not installed"; \
+	fi
+	@if command -v az &> /dev/null; then \
+		echo "  AZURE              ✅ Azure CLI is installed"; \
+	else \
+		echo "  AZURE              ❌ Azure CLI is not installed"; \
+	fi
+	@if command -v minikube &> /dev/null; then \
+		echo "  MINIKUBE           ✅ Minikube is installed"; \
+	else \
+		echo "  MINIKUBE           ❌ Minikube is not installed"; \
+	fi
+	@if command -v kind &> /dev/null; then \
+		echo "  KIND               ✅ Kind is installed"; \
+	else \
+		echo "  KIND               ❌ Kind is not installed"; \
+	fi
+	@if command -v terraform &> /dev/null; then \
+		echo "  TERRAFORM          ✅ Terraform is installed"; \
+	else \
+		echo "  TERRAFORM          ❌ Terraform is not installed"; \
+	fi
+	@if command -v ansible &> /dev/null; then \
+		echo "  ANSIBLE            ✅ Ansible is installed"; \
+	else \
+		echo "  ANSIBLE            ❌ Ansible is not installed"; \
+	fi
+	@if command -v prometheus &> /dev/null; then \
+		echo "  PROMETHEUS         ✅ Prometheus is installed"; \
+	else \
+		echo "  PROMETHEUS         ❌ Prometheus is not installed"; \
+	fi
+	@if command -v grafana-server &> /dev/null; then \
+		echo "  GRAFANA            ✅ Grafana is installed"; \
+	else \
+		echo "  GRAFANA            ❌ Grafana is not installed"; \
+	fi
+	@if command -v sonar-scanner &> /dev/null; then \
+		echo "  SONARQUBE          ✅ SonarQube is installed"; \
+	else \
+		echo "  SONARQUBE          ❌ SonarQube is not installed"; \
+	fi
+	@if command -v jenkins &> /dev/null; then \
+		echo "  JENKINS            ✅ Jenkins is installed"; \
+	else \
+		echo "  JENKINS            ❌ Jenkins is not installed"; \
+	fi
+	@if command -v codeclimate &> /dev/null; then \
+		echo "  CODECLIMATE        ✅ CodeClimate is installed"; \
+	else \
+		echo "  CODECLIMATE        ❌ CodeClimate is not installed"; \
+	fi
+	@if command -v helm &> /dev/null; then \
+		echo "  HELM               ✅ Helm is installed"; \
+	else \
+		echo "  HELM               ❌ Helm is not installed"; \
+	fi
+	@if command -v glasscube &> /dev/null; then \
+		echo "  GLASSCUBE          ✅ Glasscube is installed"; \
+	else \
+		echo "  GLASSCUBE          ❌ Glasscube is not installed"; \
+	fi
+	@if command -v mysql &> /dev/null; then \
+		echo "  MYSQL              ✅ MySQL is installed"; \
+	else \
+		echo "  MYSQL              ❌ MySQL is not installed"; \
+	fi
+	@if command -v mariadb &> /dev/null; then \
+		echo "  MARIADB            ✅ MariaDB is installed"; \
+	else \
+		echo "  MARIADB            ❌ MariaDB is not installed"; \
+	fi
+	@if command -v psql &> /dev/null; then \
+		echo "  POSTGRES           ✅ PostgreSQL is installed"; \
+	else \
+		echo "  POSTGRES           ❌ PostgreSQL is not installed"; \
+	fi
+	@if command -v redis-server &> /dev/null; then \
+		echo "  REDIS              ✅ Redis is installed"; \
+	else \
+		echo "  REDIS              ❌ Redis is not installed"; \
+	fi
+	@if command -v mongod &> /dev/null; then \
+		echo "  MONGODB            ✅ MongoDB is installed"; \
+	else \
+		echo "  MONGODB            ❌ MongoDB is not installed"; \
+	fi
+	@if command -v mongodb-compass &> /dev/null; then \
+		echo "  MONGODB_COMPASS    ✅ MongoDB Compass is installed"; \
+	else \
+		echo "  MONGODB_COMPASS    ❌ MongoDB Compass is not installed"; \
+	fi
+	@if command -v go &> /dev/null; then \
+		echo "  GO                 ✅ Go is installed"; \
+	else \
+		echo "  GO                 ❌ Go is not installed"; \
+	fi
+	@if command -v thanos &> /dev/null; then \
+		echo "  THANOS             ✅ Thanos is installed"; \
+	else \
+		echo "  THANOS             ❌ Thanos is not installed"; \
+	fi
+	@if command -v chef &> /dev/null; then \
+		echo "  CHEF               ✅ Chef is installed"; \
+	else \
+		echo "  CHEF               ❌ Chef is not installed"; \
+	fi
+	@if command -v puppet &> /dev/null; then \
+		echo "  PUPPET             ✅ Puppet is installed"; \
+	else \
+		echo "  PUPPET             ❌ Puppet is not installed"; \
+	fi
+	@if command -v nginx &> /dev/null; then \
+		echo "  NGINX              ✅ Nginx is installed"; \
+	else \
+		echo "  NGINX              ❌ Nginx is not installed"; \
+	fi
+	@if command -v apache2 &> /dev/null; then \
+		echo "  APACHE             ✅ Apache is installed"; \
+	else \
+		echo "  APACHE             ❌ Apache is not installed"; \
+	fi
 
 .PHONY: install_all
 install_all:
