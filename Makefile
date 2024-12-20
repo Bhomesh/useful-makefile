@@ -51,10 +51,30 @@ HAS_PUPPET := $(shell command -v puppet;)
 HAS_NGINX := $(shell command -v nginx;)
 HAS_APACHE := $(shell command -v apache2;)
 HAS_MONGODB_COMPASS := $(shell command -v mongodb-compass;)
+HAS_GIT := $(shell command -v git;)
+HAS_HTOP := $(shell command -v htop;)
+HAS_TMUX := $(shell command -v tmux;)
+HAS_TREE := $(shell command -v tree;)
+HAS_NET_TOOLS := $(shell command -v netstat;)
+HAS_BUILD_ESSENTIAL := $(shell command -v gcc;)
+HAS_OPENSSH := $(shell command -v ssh;)
+HAS_WGET := $(shell command -v wget;)
+HAS_SNAP := $(shell command -v snap;)
+HAS_CHROME := $(shell command -v google-chrome;)
+HAS_FIREFOX := $(shell command -v firefox;)
+HAS_TERRAGRUNT := $(shell command -v terragrunt;)
+HAS_TFSEC := $(shell command -v tfsec;)
+HAS_TFLINT := $(shell command -v tflint;)
+HAS_TFENV := $(shell command -v tfenv;)
+HAS_POWERLEVEL10K := $(shell test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k && echo "yes" || echo "no")
+HAS_SPACESHIP := $(shell test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt && echo "yes" || echo "no")
+HAS_AGNOSTER := $(shell test -f ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/agnoster.zsh-theme && echo "yes" || echo "no")
+HAS_FLAMESHOT := $(shell command -v flameshot;)
+HAS_GPARTED := $(shell command -v gparted;)
 
 .DEFAULT_GOAL := help
 
-.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible python3 java node npm codeclimate helm glasscube mysql mariadb postgres redis mongodb go thanos chef puppet nginx apache mongodb-compass
+.PHONY: help prepare dockercli zsh PIP CURL VIM UNZIP EKSCTL AWSCLI KUBECTL GCLOUD AZURE MINIKUBE KIND TERRAFORM ANSIBLE install_all docker zsh pip curl vim unzip eksctl awscli kubectl gcloud azure minikube kind terraform ansible python3 java node npm codeclimate helm glasscube mysql mariadb postgres redis mongodb go thanos chef puppet nginx apache mongodb-compass ubuntu-basics gparted
 help:
 	@echo "Usage: make <target>"
 	@echo "Targets:"
@@ -232,6 +252,106 @@ help:
 		echo "  APACHE             $(GREEN)✅ Apache is installed$(RESET)"; \
 	else \
 		echo "  APACHE             $(RED)❌ Apache is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_GIT)" ]; then \
+		echo "  GIT                $(GREEN)✅ Git is installed$(RESET)"; \
+	else \
+		echo "  GIT                $(RED)❌ Git is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_HTOP)" ]; then \
+		echo "  HTOP               $(GREEN)✅ Htop is installed$(RESET)"; \
+	else \
+		echo "  HTOP               $(RED)❌ Htop is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_TMUX)" ]; then \
+		echo "  TMUX               $(GREEN)✅ Tmux is installed$(RESET)"; \
+	else \
+		echo "  TMUX               $(RED)❌ Tmux is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_TREE)" ]; then \
+		echo "  TREE               $(GREEN)✅ Tree is installed$(RESET)"; \
+	else \
+		echo "  TREE               $(RED)❌ Tree is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_NET_TOOLS)" ]; then \
+		echo "  NET_TOOLS          $(GREEN)✅ Net-tools is installed$(RESET)"; \
+	else \
+		echo "  NET_TOOLS          $(RED)❌ Net-tools is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_BUILD_ESSENTIAL)" ]; then \
+		echo "  BUILD_ESSENTIAL    $(GREEN)✅ Build Essential is installed$(RESET)"; \
+	else \
+		echo "  BUILD_ESSENTIAL    $(RED)❌ Build Essential is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_OPENSSH)" ]; then \
+		echo "  OPENSSH            $(GREEN)✅ OpenSSH is installed$(RESET)"; \
+	else \
+		echo "  OPENSSH            $(RED)❌ OpenSSH is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_WGET)" ]; then \
+		echo "  WGET               $(GREEN)✅ Wget is installed$(RESET)"; \
+	else \
+		echo "  WGET               $(RED)❌ Wget is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_SNAP)" ]; then \
+		echo "  SNAP               $(GREEN)✅ Snap is installed$(RESET)"; \
+	else \
+		echo "  SNAP               $(RED)❌ Snap is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_CHROME)" ]; then \
+		echo "  CHROME             $(GREEN)✅ Google Chrome is installed$(RESET)"; \
+	else \
+		echo "  CHROME             $(RED)❌ Google Chrome is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_FIREFOX)" ]; then \
+		echo "  FIREFOX            $(GREEN)✅ Firefox is installed$(RESET)"; \
+	else \
+		echo "  FIREFOX            $(RED)❌ Firefox is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_TERRAGRUNT)" ]; then \
+		echo "  TERRAGRUNT         $(GREEN)✅ Terragrunt is installed$(RESET)"; \
+	else \
+		echo "  TERRAGRUNT         $(RED)❌ Terragrunt is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_TFSEC)" ]; then \
+		echo "  TFSEC              $(GREEN)✅ TFSec is installed$(RESET)"; \
+	else \
+		echo "  TFSEC              $(RED)❌ TFSec is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_TFLINT)" ]; then \
+		echo "  TFLINT             $(GREEN)✅ TFLint is installed$(RESET)"; \
+	else \
+		echo "  TFLINT             $(RED)❌ TFLint is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_TFENV)" ]; then \
+		echo "  TFENV              $(GREEN)✅ TFEnv is installed$(RESET)"; \
+	else \
+		echo "  TFENV              $(RED)❌ TFEnv is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_POWERLEVEL10K)" ]; then \
+		echo "  POWERLEVEL10K      $(GREEN)✅ Powerlevel10k is installed$(RESET)"; \
+	else \
+		echo "  POWERLEVEL10K      $(RED)❌ Powerlevel10k is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_SPACESHIP)" ]; then \
+		echo "  SPACESHIP          $(GREEN)✅ Spaceship is installed$(RESET)"; \
+	else \
+		echo "  SPACESHIP          $(RED)❌ Spaceship is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_AGNOSTER)" ]; then \
+		echo "  AGNOSTER           $(GREEN)✅ Agnoster is installed$(RESET)"; \
+	else \
+		echo "  AGNOSTER           $(RED)❌ Agnoster is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_FLAMESHOT)" ]; then \
+		echo "  FLAMESHOT          $(GREEN)✅ Flameshot is installed$(RESET)"; \
+	else \
+		echo "  FLAMESHOT          $(RED)❌ Flameshot is not installed$(RESET)"; \
+	fi
+	@if [ "$(HAS_GPARTED)" ]; then \
+		echo "  GPARTED            $(GREEN)✅ GParted is installed$(RESET)"; \
+	else \
+		echo "  GPARTED            $(RED)❌ GParted is not installed$(RESET)"; \
 	fi
 
 .PHONY: install_all
@@ -938,26 +1058,12 @@ node:
 		echo "$(YELLOW)Installing Node.js...$(RESET)"; \
 		curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \
 		sudo apt-get install -y nodejs; \
-		echo "$(GREEN)Node.js installed successfully.$(RESET)"; \
-		echo "$(YELLOW)Node.js version:$(RESET)"; \
-		node --version; \
-	else \
-		echo "$(GREEN)Node.js is already installed.$(RESET)"; \
-		echo "$(YELLOW)Node.js version:$(RESET)"; \
-		node --version; \
 	fi
 
 npm:
 	@if ! command -v npm &> /dev/null; then \
 		echo "$(YELLOW)Installing NPM...$(RESET)"; \
 		sudo apt-get install -y npm; \
-		echo "$(GREEN)NPM installed successfully.$(RESET)"; \
-		echo "$(YELLOW)NPM version:$(RESET)"; \
-		npm --version; \
-	else \
-		echo "$(GREEN)NPM is already installed.$(RESET)"; \
-		echo "$(YELLOW)NPM version:$(RESET)"; \
-		npm --version; \
 	fi
 
 codeclimate:
@@ -968,10 +1074,6 @@ codeclimate:
 		sudo make install && \
 		cd .. && rm -rf codeclimate-master && \
 		sudo codeclimate engines:install; \
-		echo "$(GREEN)CodeClimate installed successfully.$(RESET)"; \
-		echo "$(YELLOW)Run 'codeclimate help' for usage information$(RESET)"; \
-	else \
-		echo "$(GREEN)CodeClimate is already installed.$(RESET)"; \
 	fi
 
 helm:
@@ -981,19 +1083,12 @@ helm:
 		echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list && \
 		sudo apt-get update && \
 		sudo apt-get install -y helm; \
-		echo "$(GREEN)Helm installed successfully.$(RESET)"; \
-		echo "$(YELLOW)Helm version:$(RESET)"; \
-		helm version; \
-	else \
-		echo "$(GREEN)Helm is already installed.$(RESET)"; \
-		echo "$(YELLOW)Helm version:$(RESET)"; \
-		helm version; \
 	fi
 
 glasscube:
 	@if ! command -v glasscube &> /dev/null; then \
 		echo "$(YELLOW)Installing Glasscube...$(RESET)"; \
-		curl -fsSL https://raw.githubusercontent.com/glasscube/glasscube/main/install.sh | sudo bash; \
+			curl -fsSL https://raw.githubusercontent.com/glasscube/glasscube/main/install.sh | sudo bash; \
 		echo "$(GREEN)Glasscube installed successfully.$(RESET)"; \
 		echo "$(YELLOW)Run 'glasscube --help' for usage information$(RESET)"; \
 	else \
@@ -1145,9 +1240,236 @@ mongodb-compass:
 		wget https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb && \
 		sudo dpkg -i mongodb-compass_1.40.4_amd64.deb && \
 		rm mongodb-compass_1.40.4_amd64.deb; \
-		echo "$(GREEN)MongoDB Compass installed successfully.$(RESET)"; \
-		echo "$(YELLOW)Launch MongoDB Compass from your applications menu$(RESET)"; \
+	fi
+
+ubuntu-basics:
+	@echo "$(CYAN)Installing basic Ubuntu tools...$(RESET)"
+	sudo apt-get update
+	
+	@if ! command -v git &> /dev/null; then \
+		echo "$(YELLOW)Installing Git...$(RESET)"; \
+		sudo apt-get install -y git; \
+	fi
+	
+	@if ! command -v htop &> /dev/null; then \
+		echo "$(YELLOW)Installing Htop...$(RESET)"; \
+		sudo apt-get install -y htop; \
+	fi
+	
+	@if ! command -v tmux &> /dev/null; then \
+		echo "$(YELLOW)Installing Tmux...$(RESET)"; \
+		sudo apt-get install -y tmux; \
+	fi
+	
+	@if ! command -v tree &> /dev/null; then \
+		echo "$(YELLOW)Installing Tree...$(RESET)"; \
+		sudo apt-get install -y tree; \
+	fi
+	
+	@if ! command -v netstat &> /dev/null; then \
+		echo "$(YELLOW)Installing Net-tools...$(RESET)"; \
+		sudo apt-get install -y net-tools; \
+	fi
+	
+	@if ! command -v gcc &> /dev/null; then \
+		echo "$(YELLOW)Installing Build Essential...$(RESET)"; \
+		sudo apt-get install -y build-essential; \
+	fi
+	
+	@if ! command -v ssh &> /dev/null; then \
+		echo "$(YELLOW)Installing OpenSSH...$(RESET)"; \
+		sudo apt-get install -y openssh-server openssh-client; \
+	fi
+	
+	@if ! command -v wget &> /dev/null; then \
+		echo "$(YELLOW)Installing Wget...$(RESET)"; \
+		sudo apt-get install -y wget; \
+	fi
+	
+	@if ! command -v snap &> /dev/null; then \
+		echo "$(YELLOW)Installing Snap...$(RESET)"; \
+		sudo apt-get install -y snapd; \
+	fi
+
+	# Install additional useful packages
+	sudo apt-get install -y \
+		software-properties-common \
+		apt-transport-https \
+		ca-certificates \
+		gnupg \
+		lsb-release \
+		zip \
+		gzip \
+		tar \
+		nano \
+		screen \
+		nmap \
+		tcpdump \
+		iftop \
+		htop \
+		iotop \
+		neofetch \
+		tldr \
+		jq \
+		ncdu \
+		dnsutils \
+		net-tools \
+		iproute2 \
+		traceroute \
+		whois \
+		mtr \
+		flameshot \
+		gparted
+
+	# Install browsers if not present
+	@if ! command -v google-chrome &> /dev/null; then \
+		echo "$(YELLOW)Installing Google Chrome...$(RESET)"; \
+		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+		sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -f -y && \
+		rm google-chrome-stable_current_amd64.deb; \
+	fi
+	
+	@if ! command -v firefox &> /dev/null; then \
+		echo "$(YELLOW)Installing Firefox...$(RESET)"; \
+		sudo apt-get install -y firefox; \
+	fi
+
+	@echo "$(GREEN)Basic Ubuntu tools installed successfully.$(RESET)"
+
+terragrunt:
+	@if ! command -v terragrunt &> /dev/null; then \
+		echo "$(YELLOW)Installing Terragrunt...$(RESET)"; \
+		TERRAGRUNT_VERSION=$$(curl -s https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | grep tag_name | cut -d '"' -f 4) && \
+		sudo wget -O /usr/local/bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/$$TERRAGRUNT_VERSION/terragrunt_linux_amd64" && \
+		sudo chmod +x /usr/local/bin/terragrunt; \
+		echo "$(GREEN)Terragrunt installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Terragrunt version:$(RESET)"; \
+		terragrunt --version; \
 	else \
-		echo "$(GREEN)MongoDB Compass is already installed.$(RESET)"; \
+		echo "$(GREEN)Terragrunt is already installed.$(RESET)"; \
+		echo "$(YELLOW)Terragrunt version:$(RESET)"; \
+		terragrunt --version; \
+	fi
+
+tfsec:
+	@if ! command -v tfsec &> /dev/null; then \
+		echo "$(YELLOW)Installing TFSec...$(RESET)"; \
+		sudo curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash && \
+		sudo mv tfsec /usr/local/bin/; \
+		echo "$(GREEN)TFSec installed successfully.$(RESET)"; \
+		echo "$(YELLOW)TFSec version:$(RESET)"; \
+		tfsec --version; \
+	else \
+		echo "$(GREEN)TFSec is already installed.$(RESET)"; \
+		echo "$(YELLOW)TFSec version:$(RESET)"; \
+		tfsec --version; \
+	fi
+
+tflint:
+	@if ! command -v tflint &> /dev/null; then \
+		echo "$(YELLOW)Installing TFLint...$(RESET)"; \
+		curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash; \
+		echo "$(GREEN)TFLint installed successfully.$(RESET)"; \
+		echo "$(YELLOW)TFLint version:$(RESET)"; \
+		tflint --version; \
+	else \
+		echo "$(GREEN)TFLint is already installed.$(RESET)"; \
+		echo "$(YELLOW)TFLint version:$(RESET)"; \
+		tflint --version; \
+	fi
+
+tfenv:
+	@if ! command -v tfenv &> /dev/null; then \
+		echo "$(YELLOW)Installing TFEnv...$(RESET)"; \
+		git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv && \
+		sudo ln -s ~/.tfenv/bin/* /usr/local/bin; \
+		echo "$(GREEN)TFEnv installed successfully.$(RESET)"; \
+		echo "$(YELLOW)TFEnv version:$(RESET)"; \
+		tfenv --version; \
+	else \
+		echo "$(GREEN)TFEnv is already installed.$(RESET)"; \
+		echo "$(YELLOW)TFEnv version:$(RESET)"; \
+		tfenv --version; \
+	fi
+
+terraform-tools: terraform terragrunt tfsec tflint tfenv
+	@echo "$(GREEN)All Terraform tools have been installed successfully.$(RESET)"
+
+zsh-themes: powerlevel10k spaceship agnoster
+	@echo "$(GREEN)Oh My Zsh themes installed successfully.$(RESET)"
+
+powerlevel10k:
+	@if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then \
+		echo "$(YELLOW)Installing Powerlevel10k theme...$(RESET)"; \
+		git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k; \
+		echo "$(GREEN)Powerlevel10k installed successfully.$(RESET)"; \
+		echo "$(YELLOW)To use Powerlevel10k, add 'ZSH_THEME=\"powerlevel10k/powerlevel10k\"' to your ~/.zshrc$(RESET)"; \
+		echo "$(YELLOW)Then run 'source ~/.zshrc' and follow the configuration wizard$(RESET)"; \
+	else \
+		echo "$(GREEN)Powerlevel10k is already installed.$(RESET)"; \
+	fi
+
+spaceship:
+	@if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt" ]; then \
+		echo "$(YELLOW)Installing Spaceship theme...$(RESET)"; \
+		git clone https://github.com/spaceship-prompt/spaceship-prompt.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt" --depth=1 && \
+		ln -s "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"; \
+		echo "$(GREEN)Spaceship installed successfully.$(RESET)"; \
+		echo "$(YELLOW)To use Spaceship, add 'ZSH_THEME=\"spaceship\"' to your ~/.zshrc$(RESET)"; \
+		echo "$(YELLOW)Then run 'source ~/.zshrc'$(RESET)"; \
+	else \
+		echo "$(GREEN)Spaceship is already installed.$(RESET)"; \
+	fi
+
+agnoster:
+	@if [ ! -f "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/agnoster.zsh-theme" ]; then \
+		echo "$(YELLOW)Installing Agnoster theme...$(RESET)"; \
+		wget -O ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/agnoster.zsh-theme \
+			https://raw.githubusercontent.com/agnoster/agnoster-zsh-theme/master/agnoster.zsh-theme; \
+		echo "$(GREEN)Agnoster installed successfully.$(RESET)"; \
+		echo "$(YELLOW)To use Agnoster, add 'ZSH_THEME=\"agnoster\"' to your ~/.zshrc$(RESET)"; \
+		echo "$(YELLOW)Then run 'source ~/.zshrc'$(RESET)"; \
+	else \
+		echo "$(GREEN)Agnoster is already installed.$(RESET)"; \
+	fi
+
+# Add fonts installation for better theme support
+fonts:
+	@echo "$(YELLOW)Installing Powerline fonts...$(RESET)"
+	@if [ ! -d "fonts" ]; then \
+		git clone --depth=1 https://github.com/powerline/fonts.git && \
+		cd fonts && \
+		./install.sh && \
+		cd .. && \
+		rm -rf fonts; \
+	fi
+	@echo "$(YELLOW)Installing Nerd Fonts...$(RESET)"
+	@mkdir -p ~/.local/share/fonts
+	@curl -fLo "Fira Code Regular Nerd Font Complete.ttf" \
+		https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
+	@mv "Fira Code Regular Nerd Font Complete.ttf" ~/.local/share/fonts/
+	@fc-cache -f -v
+	@echo "$(GREEN)Fonts installed successfully.$(RESET)"
+
+flameshot:
+	@if ! command -v flameshot &> /dev/null; then \
+		echo "$(YELLOW)Installing Flameshot...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y flameshot; \
+		echo "$(GREEN)Flameshot installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Launch with 'flameshot gui' or configure system shortcuts$(RESET)"; \
+	else \
+		echo "$(GREEN)Flameshot is already installed.$(RESET)"; \
+	fi
+
+gparted:
+	@if ! command -v gparted &> /dev/null; then \
+		echo "$(YELLOW)Installing GParted...$(RESET)"; \
+		sudo apt-get update && \
+		sudo apt-get install -y gparted; \
+		echo "$(GREEN)GParted installed successfully.$(RESET)"; \
+		echo "$(YELLOW)Launch GParted with 'sudo gparted' or from applications menu$(RESET)"; \
+	else \
+		echo "$(GREEN)GParted is already installed.$(RESET)"; \
 	fi
 

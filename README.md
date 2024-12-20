@@ -46,8 +46,10 @@ This toolkit provides a simple way to install and manage common DevOps tools usi
 | 📊 Monitoring & Observability | Prometheus, Grafana, Glasscube, Thanos |
 | 🔍 Code Quality & CI/CD | SonarQube, Jenkins, CodeClimate |
 | 💾 Databases | MySQL, MariaDB, PostgreSQL, Redis, MongoDB, MongoDB Compass |
-| 🔧 Programming Languages | Go |
+| 🔧 Programming Languages | Go, Terragrunt, TFSec, TFLint, TFEnv |
 | 🌐 Web Servers | Nginx, Apache |
+| 📸 Screenshot Tools | Flameshot |
+| 💽 System Tools | GParted |
 
 ## 📋 Usage Guide
 
@@ -101,3 +103,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Made with ❤️ by [Bhomesh](https://github.com/bhomesh)
 
 </div>
+
+## 💡 Tool Tips
+
+### Flameshot (Screenshot Tool)
+- Launch with: `flameshot gui`
+- Configure keyboard shortcut (recommended: `PrtSc` key):
+  1. Go to System Settings > Keyboard > Shortcuts
+  2. Add custom shortcut
+  3. Command: `flameshot gui`
+  4. Set your preferred key combination
+
+Features:
+- Annotation tools
+- Quick upload
+- Area selection
+- Multiple monitor support
+
+### GParted (Partition Editor)
+- Launch with: `sudo gparted` or from applications menu
+- Features:
+  - Create, delete, resize, move, check, and copy partitions
+  - Format partitions to various file systems
+  - Set partition flags
+  - Align partitions for optimal performance
+  - Supports many file systems (ext2/3/4, fat16/32, ntfs, etc.)
+
+⚠️ **Warning**: Be careful when using GParted as incorrect partition operations can lead to data loss.
